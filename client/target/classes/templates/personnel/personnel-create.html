@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать сотрудника</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/personnels/create}" th:object="${personnel}">
+    <label for="firstName">Введите имя сотрудника:</label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <br/>
+    <label for="lastName">Введите фамилию сотрудника:</label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <br/>
+    <label for="patherName">Введите отчетво сотрудника:</label>
+    <input type="text" th:field="*{patherName}" id="patherName"/>
+    <br/>
+    <input type="submit" value="Сохранить">
+</form>
+<br/><a th:href="@{/}">На главную</a>
+</body>
+</html>

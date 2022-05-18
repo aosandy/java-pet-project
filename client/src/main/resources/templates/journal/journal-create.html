@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать журнал</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/journals/create}" th:object="${journal}">
+    <label for="timeIn">Время въезда:</label>
+    <input type="date" th:field="${timeIn}" id="timeIn"/>
+    <br/>
+    <label for="timeOut">Время выезда:</label>
+    <input type="date" th:field="${timeOut}" id="timeOut"/>
+    <br/>
+    <input type="submit" value="Сохранить">
+</form>
+<br/><a th:href="@{/}">На главную</a></body>
+</html>

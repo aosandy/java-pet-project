@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Главная страница</title>
+</head>
+<body>
+<h1>Главная страница</h1>
+<form th:action="@{/routes/}">
+    <input type="submit" value="Routes"/>
+</form>
+<br/>
+<form th:action="@{/autos/}">
+    <input type="submit" value="Autos"/>
+</form>
+<br/>
+<form th:action="@{/personnels/}">
+    <input type="submit" value="Personnels"/>
+</form>
+<br/>
+<form th:action="@{/journals/}">
+    <input type="submit" value="Journals"/>
+</form>
+</body>
+</html>

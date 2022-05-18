@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Создать маршрут</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/routes/create}" th:object="${route}">
+    <label for="name">Введите имя маршрута:</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <input type="submit" value="Сохранить">
+</form>
+<br/><a th:href="@{/}">На главную</a>
+</body>
+</html>

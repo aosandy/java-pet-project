@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Все маршруты</title>
+</head>
+<body>
+<h1>Все маршруты</h1>
+<div th:each="route : ${routes}">
+    <a th:text="${route.getName()}" th:href="@{/routes/{id}(id=${route.getId()})}"></a>
+</div>
+<form sec:authorize="hasAnyRole('ADMIN', 'USER')" th:method="GET" th:action="@{/routes/create}">
+    <input type="submit" value="Создать маршрут"/>
+</form>
+<br/><a sec:authorize="hasAnyRole('ADMIN', 'USER')" th:href="@{/}">На главную</a>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все журналы</title>
+</head>
+<body>
+<h1>Все журналы</h1>
+<div th:each="journal : ${journals}">
+    <a th:text="${journal.getTimeIn()}" th:href="@{/journals/{id}(id=${journal.getId()})}"></a>
+</div>
+<form th:action="@{/journals/create}" method="get">
+    <input type="submit" value="Создать журнал"/>
+</form>
+<br/><a th:href="@{/}">На главную</a></body>
+</html>

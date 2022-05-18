@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все автомобили</title>
+</head>
+<body>
+<h1>Все автомобили</h1>
+<div th:each="auto : ${autos}">
+    <a th:text="${auto.getNum()}" th:href="@{/autos/{id}(id=${auto.getId()})}"></a>
+</div>
+<form th:method="GET" th:action="@{/autos/create}">
+    <input type="submit" value="Создать автомобиль"/>
+</form>
+<br/><a th:href="@{/}">На главную</a></body>
+</html>

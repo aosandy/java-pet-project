@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Журнал оператора</title>
+</head>
+<body>
+<h1>Журнал оператора</h1>
+<h4>Время въезда:</h4>
+    <p th:text="${journal.getTimeIn()}"/>
+<h4>Время выезда:</h4>
+    <p th:text="${journal.getTimeOut()}"/>
+<h4>Номер маршрута:</h4>
+    <p th:text="${journal.getId()}"/>
+
+<form th:action="@{/journals/{id}/edit(id=${journal.getId()})}">
+    <input type="submit" value="Редактировать журнал"/>
+</form>
+<form th:method="DELETE" th:action="@{/journals/{id}(id=${journal.getId()})}">
+    <input type="submit" value="Удалить журнал"/>
+</form>
+<br/><a th:href="@{/}">На главную</a></body>
+</html>
