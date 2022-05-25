@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Создать автомобиль</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
-<form th:method="POST" th:action="@{/autos/create}" th:object="${auto}">
-    <label for="num">Введите имя автомобиля:</label>
-    <input type="text" th:field="*{num}" id="num"/>
-    <label for="color">Введите цвет автомобиля:</label>
-    <input type="text" th:field="*{color}" id="color"/>
-    <label for="mark">Введите марку автомобиля:</label>
-    <input type="text" th:field="*{mark}" id="mark"/>
-    <br/>
-    <input type="submit" value="Сохранить">
-</form>
-<br/><a th:href="@{/}">На главную</a></body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container text-left">
+    <form th:method="POST" th:action="@{/autos/create}" th:object="${auto}">
+        <label for="num">Введите имя автомобиля:</label>
+        <input type="text" th:field="*{num}" id="num"/>
+        <br/>
+        <label for="color">Введите цвет автомобиля:</label>
+        <input type="text" th:field="*{color}" id="color"/>
+        <br/>
+        <label for="mark">Введите марку автомобиля:</label>
+        <input type="text" th:field="*{mark}" id="mark"/>
+        <br/>
+        <input type="submit" value="Сохранить">
+    </form>
+</div>
+
+</body>
 </html>

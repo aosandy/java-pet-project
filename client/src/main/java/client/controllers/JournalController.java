@@ -1,7 +1,6 @@
 package client.controllers;
 
 import client.entity.Journal;
-import client.entity.Route;
 import client.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;

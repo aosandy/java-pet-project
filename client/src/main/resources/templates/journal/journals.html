@@ -3,14 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Все журналы</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
-<h1>Все журналы</h1>
-<div th:each="journal : ${journals}">
-    <a th:text="${journal.getTimeIn()}" th:href="@{/journals/{id}(id=${journal.getId()})}"></a>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container text-left">
+    <div>
+        <h1>All journals</h1>
+    </div>
+    <br/>
+    <div>
+        <table class="table table-light table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Time In</th>
+                <th>Time Out</th>
+                <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+                    <th></th>
+                    <th></th>
+                </div>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="journal : ${journals}">
+                <td th:text="${journal.getId()}">ID</td>
+                <td th:text="${#dates.format(journal.getTimeIn(), 'dd/MM/yyyy')}">Time In</td>
+                <td th:text="${#dates.format(journal.getTimeOut(), 'dd/MM/yyyy')}">Time Out</td>
+                <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+                    <td style="max-width:5px;">
+                        <form th:action="@{/journals/{id}/edit(id=${journal.getId()})}">
+                            <input type="submit" value="Edit"/>
+                        </form>
+                    </td>
+                    <td style="max-width:5px;">
+                        <form th:method="DELETE" th:action="@{/journals/{id}(id=${journal.getId()})}">
+                            <input type="submit" value="Delete"/>
+                        </form>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+        <a th:href="@{/journals/create}"> Add new journal</a>
+    </div>
 </div>
-<form th:action="@{/journals/create}" method="get">
-    <input type="submit" value="Создать журнал"/>
-</form>
-<br/><a th:href="@{/}">На главную</a></body>
+
+</body>
 </html>

@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Создать журнал</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
-<form th:method="POST" th:action="@{/journals/create}" th:object="${journal}">
-    <label for="timeIn">Время въезда:</label>
-    <input type="date" th:field="${timeIn}" id="timeIn"/>
-    <br/>
-    <label for="timeOut">Время выезда:</label>
-    <input type="date" th:field="${timeOut}" id="timeOut"/>
-    <br/>
-    <input type="submit" value="Сохранить">
-</form>
-<br/><a th:href="@{/}">На главную</a></body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container text-left">
+    <form th:method="POST" th:action="@{/journals/create}" th:object="${journal}">
+        <label for="timeIn">Время въезда:</label>
+        <input type="date" th:field="*{timeIn}" id="timeIn"/>
+        <br/>
+        <label for="timeOut">Время выезда:</label>
+        <input type="date" th:field="*{timeOut}" id="timeOut"/>
+        <br/>
+        <input type="submit" value="Сохранить">
+    </form>
+</div>
+
+</body>
 </html>

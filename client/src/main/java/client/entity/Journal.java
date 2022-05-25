@@ -1,12 +1,16 @@
 package client.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Journal {
 
     private Long id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date timeOut;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date timeIn;
 
     public Journal() {
@@ -17,11 +21,11 @@ public class Journal {
         this.timeIn = timeIn;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

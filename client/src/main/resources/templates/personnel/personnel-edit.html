@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Редактировать сотрудника</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
+
+<header th:insert="blocks/header :: header"></header>
+
 <form th:method="PUT" th:action="@{/personnels/{id}/edit(id=${personnel.getId()})}" th:object="${personnel}">
     <label for="firstName">Введите имя сотрудника:</label>
     <input type="text" th:field="*{firstName}" id="firstName"/>
@@ -17,6 +22,6 @@
     <br/>
     <input type="submit" value="Сохранить">
 </form>
-<br/><a th:href="@{/}">На главную</a>
+
 </body>
 </html>

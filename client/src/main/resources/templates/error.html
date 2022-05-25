@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>Главная страница</title>
+    <title>Error</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
           integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
@@ -9,15 +9,10 @@
 
 <header th:insert="blocks/header :: header"></header>
 
-<div class="container text-left">
-    <div th:if="${not @user.isAuthenticated()}">
-        <h1>Welcome!</h1>
-    </div>
-
-    <div th:if="${@user.isAuthenticated()}">
-        <h1>Welcome, <a th:text="${@user.getUsername()} + '!'"></a></h1>
+<div class="container text-center">
+    <div>
+        <h1>Error</h1>
     </div>
 </div>
-
 </body>
 </html>

@@ -3,15 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Все сотрудники</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
-<h1>Все сотрудники</h1>
-<div th:each="personnel : ${personnels}">
-    <a th:text="${personnel.getFirstName()}" th:href="@{/personnels/{id}(id=${personnel.getId()})}"></a>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container text-left">
+    <div>
+        <h1>All personnel</h1>
+    </div>
+    <br/>
+    <div>
+        <table class="table table-light table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Pather Name</th>
+                <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+                    <th></th>
+                    <th></th>
+                </div>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="personnel : ${personnels}">
+                <td th:text="${personnel.getId()}">ID</td>
+                <td th:text="${personnel.getFirstName()}">First Name</td>
+                <td th:text="${personnel.getLastName()}">Last Name</td>
+                <td th:text="${personnel.getPatherName()}">Pather Name</td>
+                <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+                    <td style="max-width:50px;">
+                        <form th:action="@{/personnels/{id}/edit(id=${personnel.getId()})}">
+                            <input type="submit" value="Edit"/>
+                        </form>
+                    </td>
+                    <td style="max-width:50px;">
+                        <form th:method="DELETE" th:action="@{/personnels/{id}(id=${personnel.getId()})}">
+                            <input type="submit" value="Delete"/>
+                        </form>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+        <a th:href="@{/personnels/create}"> Add new personnel</a>
+    </div>
 </div>
-<form th:action="@{/personnels/create}" method="get">
-    <input type="submit" value="Создать сотрудника"/>
-</form>
-<br/><a th:href="@{/}">На главную</a>
+
 </body>
 </html>

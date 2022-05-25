@@ -1,18 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Все маршруты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
-<h1>Все маршруты</h1>
-<div th:each="route : ${routes}">
-    <a th:text="${route.getName()}" th:href="@{/routes/{id}(id=${route.getId()})}"></a>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container text-left">
+    <div>
+        <h1>All routes</h1>
+    </div>
+    <br/>
+    <div>
+        <table class="table table-light table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+                    <th></th>
+                    <th></th>
+                </div>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="route : ${routes}">
+                <td th:text="${route.getId()}">ID</td>
+                <td th:text="${route.getName()}">Name</td>
+                <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+                    <td style="max-width:5px;">
+                        <form th:action="@{/routes/{id}/edit(id=${route.getId()})}">
+                            <input type="submit" value="Edit"/>
+                        </form>
+                    </td>
+                    <td style="max-width:5px;">
+                        <form th:method="DELETE" th:action="@{/routes/{id}(id=${route.getId()})}">
+                            <input type="submit" value="Delete"/>
+                        </form>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+        <a th:href="@{/routes/create}"> Add new route</a>
+    </div>
 </div>
-<form sec:authorize="hasAnyRole('ADMIN', 'USER')" th:method="GET" th:action="@{/routes/create}">
-    <input type="submit" value="Создать маршрут"/>
-</form>
-<br/><a sec:authorize="hasAnyRole('ADMIN', 'USER')" th:href="@{/}">На главную</a>
+
 </body>
 </html>

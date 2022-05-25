@@ -1,7 +1,6 @@
 package client.controllers;
 
 import client.entity.AutoPersonnel;
-import client.entity.Route;
 import client.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -67,7 +66,7 @@ public class AutoPersonnelController {
     public String editAutoPersonnel(@PathVariable("id") Integer id, Model model) {
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:8080/personnels/" + id;
-        ResponseEntity<Route> responseEntity = restTemplate.getForEntity(url, Route.class);
+        ResponseEntity<AutoPersonnel> responseEntity = restTemplate.getForEntity(url, AutoPersonnel.class);
         model.addAttribute("personnel", responseEntity.getBody());
         return "personnel/personnel-edit";
     }

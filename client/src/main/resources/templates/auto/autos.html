@@ -3,14 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Все автомобили</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
-<h1>Все автомобили</h1>
-<div th:each="auto : ${autos}">
-    <a th:text="${auto.getNum()}" th:href="@{/autos/{id}(id=${auto.getId()})}"></a>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container text-left">
+    <div>
+        <h1>All autos</h1>
+    </div>
+    <br/>
+    <div>
+        <table class="table table-light table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Num</th>
+                <th>Color</th>
+                <th>Mark</th>
+                <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+                    <th></th>
+                    <th></th>
+                </div>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="auto : ${autos}">
+                <td th:text="${auto.getId()}">ID</td>
+                <td th:text="${auto.getNum()}">Num</td>
+                <td th:text="${auto.getColor()}">Color</td>
+                <td th:text="${auto.getMark()}">Mark</td>
+                <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+                    <td style="max-width:10px;">
+                        <form th:action="@{/autos/{id}/edit(id=${auto.getId()})}">
+                            <input type="submit" value="Edit"/>
+                        </form>
+                    </td>
+                    <td style="max-width:10px;">
+                        <form th:method="DELETE" th:action="@{/autos/{id}(id=${auto.getId()})}">
+                            <input type="submit" value="Delete"/>
+                        </form>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${@user.hasAnyRoles('ROLE_ADMIN')}">
+        <a th:href="@{/autos/create}"> Add new auto</a>
+    </div>
 </div>
-<form th:method="GET" th:action="@{/autos/create}">
-    <input type="submit" value="Создать автомобиль"/>
-</form>
-<br/><a th:href="@{/}">На главную</a></body>
+
+</body>
 </html>

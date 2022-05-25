@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в систему</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+</head>
+<body>
+
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container text-left">
+    <h1>Вход в систему</h1>
+    <form th:method="POST" th:action="@{/auth/signin}" th:object="${user}">
+        <label for="username">Имя пользователя:</label>
+        <br/>
+        <input type="text" th:field="*{username}" id="username"/>
+        <br/>
+        <label for="password">Пароль:</label>
+        <br/>
+        <input type="text" th:field="*{password}" id="password"/>
+        <br/>
+        <input type="submit" value="Войти">
+    </form>
+    <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+</div>
+
+</body>
+</html>
