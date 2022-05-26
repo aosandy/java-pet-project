@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Создать маршрут</title>
+    <title>Create route</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
           integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
@@ -11,11 +11,15 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container text-left">
-    <form th:method="POST" th:action="@{/routes/create}" th:object="${route}">
-        <label for="name">Введите имя маршрута:</label>
-        <input type="text" th:field="*{name}" id="name"/>
-        <br/>
-        <input type="submit" value="Сохранить">
+    <form style="max-width: 500px;" th:method="POST" th:action="@{/routes/create}" th:object="${route}">
+        <div class="m-3">
+            <div class="col-auto">
+                <label class="col-form-label" for="name">Enter route name:</label>
+                <input class="form-control" type="text" th:field="*{name}" id="name"/>
+            </div>
+            <br/>
+            <input type="submit" value="Submit">
+        </div>
     </form>
 </div>
 

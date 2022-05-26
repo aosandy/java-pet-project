@@ -2,23 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Создать журнал</title>
+    <title>Create journal</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
 
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container text-left">
-    <form th:method="POST" th:action="@{/journals/create}" th:object="${journal}">
-        <label for="timeIn">Время въезда:</label>
-        <input type="date" th:field="*{timeIn}" id="timeIn"/>
-        <br/>
-        <label for="timeOut">Время выезда:</label>
-        <input type="date" th:field="*{timeOut}" id="timeOut"/>
-        <br/>
-        <input type="submit" value="Сохранить">
+    <form class="col-form-label" th:method="POST" th:action="@{/journals/create}" th:object="${journal}">
+        <div class="m-3">
+            <div class="col-auto">
+                <label class="col-form-label" for="timeIn">Enter time in:</label>
+                <input class="form-control" th:type="date" th:field="*{timeIn}" id="timeIn"/>
+            </div>
+            <br/>
+            <div class="col-auto">
+                <label class="col-form-label" for="timeOut">Enter time out:</label>
+                <input class="form-control" th:type="date" th:field="*{timeOut}" id="timeOut"/>
+            </div>
+            <br/>
+            <input type="submit" value="Submit">
+        </div>
     </form>
 </div>
 

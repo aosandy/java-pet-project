@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Редактировать сотрудника</title>
+    <title>Edit personnel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
           integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
@@ -10,18 +10,28 @@
 
 <header th:insert="blocks/header :: header"></header>
 
-<form th:method="PUT" th:action="@{/personnels/{id}/edit(id=${personnel.getId()})}" th:object="${personnel}">
-    <label for="firstName">Введите имя сотрудника:</label>
-    <input type="text" th:field="*{firstName}" id="firstName"/>
-    <br/>
-    <label for="lastName">Введите фамилию сотрудника:</label>
-    <input type="text" th:field="*{lastName}" id="lastName"/>
-    <br/>
-    <label for="patherName">Введите отчетво сотрудника:</label>
-    <input type="text" th:field="*{patherName}" id="patherName"/>
-    <br/>
-    <input type="submit" value="Сохранить">
-</form>
+<div class="container text-left">
+    <form style="max-width: 500px;" th:method="PUT" th:action="@{/personnels/{id}/edit(id=${personnel.getId()})}" th:object="${personnel}">
+        <div class="m-3">
+            <div class="col-auto">
+                <label class="col-form-label" for="firstName">Enter first name:</label>
+                <input class="form-control" type="text" th:field="*{firstName}" id="firstName"/>
+            </div>
+            <br/>
+            <div class="col-auto">
+                <label class="col-form-label" for="lastName">Enter last name:</label>
+                <input class="form-control" type="text" th:field="*{lastName}" id="lastName"/>
+            </div>
+            <br/>
+            <div class="col-auto">
+                <label class="col-form-label" for="patherName">Enter pather name:</label>
+                <input class="form-control" type="text" th:field="*{patherName}" id="patherName"/>
+            </div>
+            <br/>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

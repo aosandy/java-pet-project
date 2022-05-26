@@ -2,28 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Вход в систему</title>
+    <title>Sign in</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
-        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
 </head>
 <body>
 
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container text-left">
-    <h1>Вход в систему</h1>
-    <form th:method="POST" th:action="@{/auth/signin}" th:object="${user}">
-        <label for="username">Имя пользователя:</label>
-        <br/>
-        <input type="text" th:field="*{username}" id="username"/>
-        <br/>
-        <label for="password">Пароль:</label>
-        <br/>
-        <input type="text" th:field="*{password}" id="password"/>
-        <br/>
-        <input type="submit" value="Войти">
+    <h1>Sign in</h1>
+    <form style="max-width: 500px;" th:method="POST" th:action="@{/auth/signin}" th:object="${user}">
+        <div class="m-3">
+            <div class="col-auto">
+                <label class="col-form-label" for="username">Username:</label>
+                <input class="form-control" type="text" th:field="*{username}" id="username"/>
+            </div>
+            <br/>
+            <div class="col-auto">
+                <label class="col-form-label" for="password">Password:</label>
+                <input class="form-control" type="text" th:field="*{password}" id="password"/>
+            </div>
+            <br/>
+            <input type="submit" value="Enter">
+        </div>
     </form>
-    <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+    <br/>
+    <div class="text-danger" th:if="${errorMessage}" th:text="${errorMessage}"></div>
 </div>
 
 </body>
