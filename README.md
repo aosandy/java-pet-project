@@ -1,4 +1,4 @@
-# Spring Pet Project
+# Spring Coursework
 ## Introduction
 The project is designed to solve the problem of automating the work of the fleet. The application consists of server and client parts. The server part includes REST API, and the client part includes GUI
 
